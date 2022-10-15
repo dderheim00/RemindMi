@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "808243495408",
+    "project_id": "remender-c60c3",
+    "storage_bucket": "remender-c60c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808243495408:android:14882011ffcdebbbf21d35",
+        "android_client_info": {
+          "package_name": "com.example.reminder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "808243495408-gl3n2q2195rhaft704ra0884obkems33.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJz4fybK5xR2r1_T1swuyUoHjwpMlBFlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "808243495408-gl3n2q2195rhaft704ra0884obkems33.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
