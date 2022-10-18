@@ -1,6 +1,12 @@
 import 'package:get/get.dart';
+import 'package:remindmi/app/modules/childrenhome/children_home_view.dart';
+import 'package:remindmi/app/modules/childrenhome/children_home_binding.dart';
 import 'package:remindmi/app/modules/login/login_binding.dart';
 import 'package:remindmi/app/modules/login/login_view.dart';
+import 'package:remindmi/app/modules/parenthome/parent_home_binding.dart';
+import 'package:remindmi/app/modules/parenthome/parent_home_view.dart';
+import 'package:remindmi/app/modules/signup/signup_view.dart';
+import 'package:remindmi/app/modules/signup/signup_binding.dart';
 import 'package:remindmi/app/modules/splash/splash_binding.dart';
 import 'package:remindmi/app/modules/splash/splash_view.dart';
 
@@ -30,6 +36,21 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.SIGNUP,
+      page: () => const SignupView(),
+      binding: SignupBinding(),
+    ),
+    GetPage(
+      name: _Paths.PARENTHOME,
+      page: () => const  ParentHomeView (),
+      binding: ParentHomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHILDRENHOME,
+      page: () => const ChildrenHomeView(),
+      binding: ChildrenHomeBinding(),
     ),
   ];
 }

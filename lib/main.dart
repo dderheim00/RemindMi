@@ -10,6 +10,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   await GetStorage.init();
   SharedPreferences prefs = await SharedPreferences.getInstance();
+  // FirebaseApp firebaseApp = await Firebase.initializeApp(
+  //   options: const FirebaseOptions(
+  //     apiKey: "AIzaSyBJz4fybK5xR2r1_T1swuyUoHjwpMlBFlw",
+  //     appId: "1:808243495408:android:14882011ffcdebbbf21d35",
+  //     messagingSenderId: "808243495408",
+  //     projectId: "remender-c60c3",
+  //   ),
+  // );
   runApp(
     GetMaterialApp(
       title: "Application",
@@ -19,3 +27,11 @@ void main() async {
     ),
   );
 }
+// FirebaseApp firebaseApp = await Firebase.initializeApp(
+// options: const FirebaseOptions(
+// apiKey: "AIzaSyBJz4fybK5xR2r1_T1swuyUoHjwpMlBFlw",
+// appId: "1:808243495408:android:14882011ffcdebbbf21d35",
+// messagingSenderId: "808243495408",
+// projectId: "remender-c60c3",
+// ),
+// );
