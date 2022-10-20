@@ -28,48 +28,59 @@ class LoginController extends GetxController {
     // getStorge.write("id", 1);
     // getStorge.write("name", "Ripples Code");
     // Get.offAllNamed(Routes.HOME);
-    print("####################################################################################################login function is called");
+    print(
+        "####################################################################################################login function is called");
     loginUsingEmailPassword(email, password);
   }
 
-   Future<User?> loginUsingEmailPassword(String email,
-      String password,) async {
-    print("####################################################################################################login 2 function is called");
+  Future<User?> loginUsingEmailPassword(
+    String email,
+    String password,
+  ) async {
+    print(
+        "####################################################################################################login 2 function is called");
 
     FirebaseAuth auth = FirebaseAuth.instance;
+    print(auth);
     User? user;
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: email, password: password);
       user = userCredential.user;
-      print("####################################################################################################user found");
+      print(
+          "####################################################################################################user found");
 
       print(user);
       route();
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
         print("NO User found for that email");
-      } else if (e.code == 'wrong-password');
+      } else if (e.code == 'wrong-password') ;
     }
-
   }
 
-void route() {
-  User? user = FirebaseAuth.instance.currentUser;
-  var kk = FirebaseFirestore.instance
-      .collection('users')
-      .doc(user!.uid)
-      .get()
-      .then((DocumentSnapshot documentSnapshot) {
-    if (documentSnapshot.exists) {
-      if (documentSnapshot.get('role') == "parent") {
-        Get.offAllNamed(Routes.PARENTHOME);
+  void route() {
+    User? user = FirebaseAuth.instance.currentUser;
+    var kk = FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        // if (documentSnapshot.get('role') == "parent") {
+        getStorge.write("id", user.uid);
+        getStorge.write("email", user.email);
+        getStorge.write("role", documentSnapshot.get('role'));
+        print(
+            "###################################################################");
+        print(getStorge.read("role"));
+        Get.offAllNamed(Routes.HOME);
+        // } else {
+        //   Get.offAllNamed(Routes.CHILDRENHOME);
+        // }
       } else {
-        Get.offAllNamed(Routes.CHILDRENHOME);
+        print('Document does not exist on the database');
       }
-    } else {
-      print('Document does not exist on the database');
-    }
-  });
-}
+    });
+  }
 }

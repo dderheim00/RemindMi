@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "808243495408",
-    "project_id": "remender-c60c3",
-    "storage_bucket": "remender-c60c3.appspot.com"
+    "project_number": "280337506389",
+    "project_id": "remindmi-9dc14",
+    "storage_bucket": "remindmi-9dc14.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:808243495408:android:14882011ffcdebbbf21d35",
+        "mobilesdk_app_id": "1:280337506389:android:85918bc697a6d2cccc74dc",
         "android_client_info": {
           "package_name": "com.example.reminder"
         }
       },
       "oauth_client": [
         {
-          "client_id": "808243495408-gl3n2q2195rhaft704ra0884obkems33.apps.googleusercontent.com",
+          "client_id": "280337506389-9h0a4h7bqbf5k86t9rtc53eqr178l65i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBJz4fybK5xR2r1_T1swuyUoHjwpMlBFlw"
+          "current_key": "AIzaSyDXqy3YrI9P5epegNg19lpCnSNJbmL0SoI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "808243495408-gl3n2q2195rhaft704ra0884obkems33.apps.googleusercontent.com",
+              "client_id": "280337506389-9h0a4h7bqbf5k86t9rtc53eqr178l65i.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -29,11 +29,20 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
             ),
           ),
           Text(
-            getStorge.read("id"),
+            (getStorge.read("id") != null ? (getStorge.read("id")) : ('')),
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           Text(
-            getStorge.read("email"),
+            (getStorge.read("email") != null
+                ? (getStorge.read("email"))
+                : ('')),
+            style: TextStyle(
+              color: Colors.grey[200],
+              fontSize: 14,
+            ),
+          ),
+          Text(
+            (getStorge.read("role") != null ? (getStorge.read("role")) : ('')),
             style: TextStyle(
               color: Colors.grey[200],
               fontSize: 14,

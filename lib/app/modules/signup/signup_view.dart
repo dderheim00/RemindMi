@@ -12,18 +12,6 @@ import 'package:remindmi/utils/my_preferences.dart';
 class SignupView extends GetView<SignupController> {
   const SignupView({Key? key}) : super(key: key);
 
-  Future<FirebaseApp> _initializefirebase() async {
-    FirebaseApp firebaseApp = await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: "AIzaSyBJz4fybK5xR2r1_T1swuyUoHjwpMlBFlw",
-        appId: "1:808243495408:android:14882011ffcdebbbf21d35",
-        messagingSenderId: "808243495408",
-        projectId: "remender-c60c3",
-      ),
-    );
-    print("###############################################");
-    return firebaseApp;
-  }
 
   // await Firebase.initializeApp();
   @override
@@ -32,9 +20,9 @@ class SignupView extends GetView<SignupController> {
     TextEditingController _passwordController = TextEditingController();
     return Scaffold(
         body: FutureBuilder(
-          future: _initializefirebase(),
+          // future: _initializefirebase(),
           builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
+            // if (snapshot.connectionState == ConnectionState.done) {
               return Center(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -96,29 +84,6 @@ class SignupView extends GetView<SignupController> {
                           onPressed: () {
                             controller.signUp(_emailController.text,_passwordController.text ,'parent');
                           },
-                          // onPressed: () async {
-                          //   User? user = await loginUsingEmailPassword(
-                          //       email: _emailController.text,
-                          //       password: _passwordController.text,
-                          //       context: context);
-                          //   // print(user?.email);
-                          //   if (user != null) {
-                          //     getStorge.write("id", user.uid);
-                          //     getStorge.write("name", user.displayName);
-                          //     getStorge.write("email", user.email);
-                          //
-                          //     // getStorge.write("name", "Ripples Code");
-                          //     // getStorge.write("user", user);
-                          //     // getStorge.read("id");
-                          //     // myPrefs.setString('id', "1");
-                          //     // print('stored id is :');
-                          //     // print(myPrefs.getString("id"));
-                          //     // print(getStorge.read('id'));
-                          //     Get.offAllNamed(Routes.HOME);
-                          //     // Navigator.of(context).pushReplacement(
-                          //     //     MaterialPageRoute(builder: (context) => ProfileScreen()));
-                          //   }
-                          // },
                           child: const Text(
                             "Login",
                             style: TextStyle(
@@ -141,10 +106,10 @@ class SignupView extends GetView<SignupController> {
                   ),
                 ),
               );
-            }
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            // }
+            // return const Center(
+            //   child: CircularProgressIndicator(),
+            // );
           },
         ));
     // return MaterialApp(

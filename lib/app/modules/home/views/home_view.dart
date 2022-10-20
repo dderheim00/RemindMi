@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:remindmi/accessibility.dart';
+import 'package:remindmi/app/modules/parenthome/parent_home_view.dart';
+import 'package:remindmi/app/routes/app_pages.dart';
 import 'package:remindmi/credits.dart';
 import 'package:remindmi/dashboard.dart';
-import 'package:remindmi/main.dart';
 import 'package:remindmi/my_drawer_header.dart';
 import 'package:remindmi/privacy_policy.dart';
 import 'package:remindmi/settings.dart';
@@ -44,9 +45,7 @@ class HomeView extends GetView<HomeController> {
     //       ),
     //     ));
   }
-
 }
-
 
 class HomePage extends StatefulWidget {
   @override
@@ -69,7 +68,12 @@ class _HomePageState extends State<HomePage> {
       container = CreditsPage();
     } else if (currentPage == DrawerSections.privacy_policy) {
       container = PrivacyPolicyPage();
+    } else if (currentPage == DrawerSections.parent_page) {
+      container = ParentHomeView ();
     }
+
+    final getStorge = GetStorage();
+    final role = getStorge.read("role");
 
     return Scaffold(
       appBar: AppBar(
@@ -84,7 +88,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 MyHeaderDrawer(),
-                MyDrawerList(),
+                ParentDrawerList(),
               ],
             ),
           ),
@@ -93,7 +97,9 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget MyDrawerList() {
+  Widget ParentDrawerList() {
+    final getStorge = GetStorage();
+    final role = getStorge.read("role");
     return Container(
       padding: EdgeInsets.only(
         top: 15,
@@ -101,6 +107,10 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         // shows the list of menu drawer
         children: [
+          if (role == 'parent') ...[
+            menuItem(6, "Add Children", Icons.dashboard_outlined,
+                currentPage == DrawerSections.dashboard ? true : false),
+          ],
           menuItem(1, "Tasks", Icons.dashboard_outlined,
               currentPage == DrawerSections.dashboard ? true : false),
           menuItem(2, "Accessibility", Icons.event,
@@ -112,16 +122,22 @@ class _HomePageState extends State<HomePage> {
               currentPage == DrawerSections.credits ? true : false),
           menuItem(5, "Privacy policy", Icons.privacy_tip_outlined,
               currentPage == DrawerSections.privacy_policy ? true : false),
+          menuItem(7, "Log Out", Icons.privacy_tip_outlined,false ),
         ],
       ),
     );
   }
 
   Widget menuItem(int id, String title, IconData icon, bool selected) {
+    final getStorge = GetStorage();
     return Material(
       color: selected ? Colors.grey[300] : Colors.transparent,
       child: InkWell(
         onTap: () {
+          if(id==7){
+            getStorge.erase();
+            Get.offAllNamed(Routes.LOGIN);
+          }
           Navigator.pop(context);
           setState(() {
             if (id == 1) {
@@ -134,6 +150,8 @@ class _HomePageState extends State<HomePage> {
               currentPage = DrawerSections.credits;
             } else if (id == 5) {
               currentPage = DrawerSections.privacy_policy;
+            } else if (id == 6) {
+              currentPage = DrawerSections.parent_page;
             }
           });
         },
@@ -175,4 +193,5 @@ enum DrawerSections {
   credits,
   privacy_policy,
   send_feedback,
+  parent_page,
 }
