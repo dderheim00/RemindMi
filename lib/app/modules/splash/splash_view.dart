@@ -13,7 +13,6 @@ class SplashView extends GetView<SplashController> {
       //   title: const Text('Splash View'),
       //   centerTitle: true,
       // ),
-      resizeToAvoidBottomInset: false,
       body: Center(
         child: Column(
           children: [
@@ -27,19 +26,21 @@ class SplashView extends GetView<SplashController> {
                 width: 100,
               ),
             ),
+            Spacer(),
+
             Text(
               'RemindMi',
               style:
                   GoogleFonts.dmSans(fontSize: 30, fontWeight: FontWeight.w700),
             ),
-            SizedBox(
-              height: 246,
-            ),
+            Spacer(),
+
             Text(
-              'V.1.0',
+              'V.0.1',
               style:
                   GoogleFonts.dmSans(fontSize: 22, fontWeight: FontWeight.w500),
-            )
+            ),
+            Spacer(),
           ],
         ),
         //

@@ -8,8 +8,8 @@ class PrivacyPolicyPage extends StatefulWidget {
 class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
+    return Scaffold(
+      body: Center(
         child: Text("Privacy Policy Page"),
       ),
     );

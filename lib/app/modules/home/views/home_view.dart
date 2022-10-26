@@ -1,9 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:remindmi/accessibility.dart';
+import 'package:remindmi/app/modules/home/views/dashboard_view.dart';
+import 'package:remindmi/app/modules/home/views/manage_view.dart';
+import 'package:remindmi/app/modules/home/widget/home_page_task_card.dart';
 import 'package:remindmi/app/modules/parenthome/parent_home_view.dart';
 import 'package:remindmi/app/routes/app_pages.dart';
+import 'package:remindmi/constants/images.dart';
 import 'package:remindmi/credits.dart';
 import 'package:remindmi/dashboard.dart';
 import 'package:remindmi/my_drawer_header.dart';
@@ -12,186 +18,75 @@ import 'package:remindmi/settings.dart';
 
 import '../controllers/home_controller.dart';
 
-class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
-    );
-    // return Scaffold(
-    //     appBar: AppBar(
-    //       title: const Text('HomeView'),
-    //       centerTitle: true,
-    //     ),
-    //     body: Center(
-    //       child: Column(
-    //         crossAxisAlignment: CrossAxisAlignment.center,
-    //         mainAxisAlignment: MainAxisAlignment.center,
-    //         children: [
-    //           Text(
-    //             controller.name,
-    //             style: const TextStyle(fontSize: 20),
-    //           ),
-    //           ElevatedButton(
-    //             child: const Text("Logout"),
-    //             onPressed: () {
-    //               controller.logout();
-    //             },
-    //           )
-    //         ],
-    //       ),
-    //     ));
-  }
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
+class _HomeViewState extends State<HomeView> {
+  PersistentTabController _controller = PersistentTabController(initialIndex: 0);
 
-class _HomePageState extends State<HomePage> {
-  var currentPage = DrawerSections.dashboard;
-
-  @override
-  Widget build(BuildContext context) {
-    var container;
-    if (currentPage == DrawerSections.dashboard) {
-      container = DashboardPage();
-    } else if (currentPage == DrawerSections.accessibility) {
-      container = AccessibilityPage();
-    } else if (currentPage == DrawerSections.settings) {
-      container = SettingsPage();
-    } else if (currentPage == DrawerSections.credits) {
-      container = CreditsPage();
-    } else if (currentPage == DrawerSections.privacy_policy) {
-      container = PrivacyPolicyPage();
-    } else if (currentPage == DrawerSections.parent_page) {
-      container = ParentHomeView();
+  List<PersistentBottomNavBarItem> _navBarsItems() {
+        return [
+            PersistentBottomNavBarItem(
+                icon: Icon(CupertinoIcons.home),
+                title: ("Home"),
+                textStyle: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600
+                ),
+                iconSize: 20,
+                activeColorPrimary: CupertinoColors.activeBlue,
+                inactiveColorPrimary: CupertinoColors.systemGrey,
+            ),
+            PersistentBottomNavBarItem(
+                icon: Icon(CupertinoIcons.settings),
+                iconSize: 20,
+                title: ("Manage"),
+                textStyle: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600
+                ),
+                activeColorPrimary: CupertinoColors.activeBlue,
+                inactiveColorPrimary: CupertinoColors.systemGrey,
+            ),
+        ];
     }
 
-    final getStorge = GetStorage();
-    final role = getStorge.read("role");
-
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.green[700],
-        title: Text("RemindMi"),
-      ),
-      body: container,
-      drawer: Drawer(
-        child: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                MyHeaderDrawer(),
-                ParentDrawerList(),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget ParentDrawerList() {
-    final getStorge = GetStorage();
-    final role = getStorge.read("role");
-    return Container(
-      padding: EdgeInsets.only(
-        top: 15,
-      ),
-      child: Column(
-        // shows the list of menu drawer
-        children: [
-          if (role == 'parent') ...[
-            menuItem(6, "Add Dependent", Icons.dashboard_outlined,
-                currentPage == DrawerSections.dashboard ? true : false),
-          ],
-          menuItem(1, "Tasks", Icons.dashboard_outlined,
-              currentPage == DrawerSections.dashboard ? true : false),
-          menuItem(2, "Accessibility", Icons.event,
-              currentPage == DrawerSections.accessibility ? true : false),
-          menuItem(3, "Settings", Icons.settings_outlined,
-              currentPage == DrawerSections.settings ? true : false),
-          Divider(),
-          menuItem(4, "Credits", Icons.notifications_outlined,
-              currentPage == DrawerSections.credits ? true : false),
-          menuItem(5, "Privacy policy", Icons.privacy_tip_outlined,
-              currentPage == DrawerSections.privacy_policy ? true : false),
-          menuItem(7, "Log Out", Icons.privacy_tip_outlined, false),
+  @override
+  Widget build(BuildContext context) {
+    return PersistentTabView(
+        context,
+        controller: _controller,
+        screens: [
+          DashboardView(),
+          ManageView(),
         ],
-      ),
-    );
-  }
-
-  Widget menuItem(int id, String title, IconData icon, bool selected) {
-    final getStorge = GetStorage();
-    return Material(
-      color: selected ? Colors.grey[300] : Colors.transparent,
-      child: InkWell(
-        onTap: () {
-          if (id == 7) {
-            getStorge.erase();
-            Get.offAllNamed(Routes.LOGIN);
-          }
-          Navigator.pop(context);
-          setState(() {
-            if (id == 1) {
-              currentPage = DrawerSections.dashboard;
-            } else if (id == 2) {
-              currentPage = DrawerSections.accessibility;
-            } else if (id == 3) {
-              currentPage = DrawerSections.settings;
-            } else if (id == 4) {
-              currentPage = DrawerSections.credits;
-            } else if (id == 5) {
-              currentPage = DrawerSections.privacy_policy;
-            } else if (id == 6) {
-              currentPage = DrawerSections.parent_page;
-            }
-          });
-        },
-        child: Padding(
-          padding: EdgeInsets.all(15.0),
-          child: Row(
-            children: [
-              Expanded(
-                child: Icon(
-                  icon,
-                  size: 20,
-                  color: Colors.black,
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ],
-          ),
+        items: _navBarsItems(),
+        confineInSafeArea: true,
+        backgroundColor: Colors.white, // Default is Colors.white.
+        handleAndroidBackButtonPress: true, // Default is true.
+        resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+        stateManagement: true, // Default is true.
+        hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+        decoration: NavBarDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          colorBehindNavBar: Colors.white,
         ),
-      ),
+        popAllScreensOnTapOfSelectedTab: true,
+        popActionScreens: PopActionScreensType.all,
+        itemAnimationProperties: ItemAnimationProperties( // Navigation Bar's items animation properties.
+          duration: Duration(milliseconds: 200),
+          curve: Curves.ease,
+        ),
+        screenTransitionAnimation: ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
+          animateTabTransition: true,
+          curve: Curves.ease,
+          duration: Duration(milliseconds: 200),
+        ),
+        navBarStyle: NavBarStyle.style6, // Choose the nav bar style with this property.
     );
   }
-}
-
-enum DrawerSections {
-  dashboard,
-  contacts,
-  accessibility,
-  notes,
-  settings,
-  credits,
-  privacy_policy,
-  send_feedback,
-  parent_page,
 }
