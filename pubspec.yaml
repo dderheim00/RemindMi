@@ -39,11 +39,15 @@ dependencies:
   shared_preferences: ^2.0.15
   get: ^4.6.5
   get_storage: ^2.0.3
+  sliver_tools: ^0.2.8
   firebase_core: ^1.24.0
   firebase_auth: ^3.11.2
   cloud_firestore: ^3.5.1
   google_fonts: ^3.0.1
+  cached_network_image: ^3.2.2
+  persistent_bottom_nav_bar: ^5.0.2
 google_fonts: ^3.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
