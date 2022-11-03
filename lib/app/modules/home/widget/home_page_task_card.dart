@@ -1,3 +1,5 @@
+//this is the file with the demo task card
+
 import 'package:flutter/material.dart';
 import 'package:remindmi/app/modules/home/widget/home_page_user_avatar.dart';
 import 'package:remindmi/constants/images.dart';
@@ -47,7 +49,7 @@ class HomePageTaskCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Nulla protasdjahskfjdh kasjdhfsadgf kasdjfh',
+                    'Assignment due 11/11/2022',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

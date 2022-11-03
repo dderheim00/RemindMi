@@ -1,3 +1,7 @@
+/*
+// goto app/modules/home/views/dashboard_view.dart
+
+
 import 'package:flutter/material.dart';
 import 'package:remindmi/app/components/task_list_card.dart';
 import 'package:remindmi/app/models/home_task_list_model.dart';
@@ -44,3 +48,4 @@ class DashboardPage extends StatelessWidget {
     );
   }
 }
+*/

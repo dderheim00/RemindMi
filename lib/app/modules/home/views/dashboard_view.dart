@@ -17,6 +17,7 @@ class _DashboardViewState extends State<DashboardView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 228, 226, 226),
+      //This is the + button that needs a fillable form to goto
       floatingActionButton: FloatingActionButton(
         onPressed: (){},
         backgroundColor: CupertinoColors.activeGreen,
@@ -76,7 +77,8 @@ class _DashboardViewState extends State<DashboardView> {
             (context,index){
               return HomePageTaskCard();
             },
-            childCount: 20
+            //##childCount repeats the demo task card  ##
+            childCount: 6
           )
           
           ,)
