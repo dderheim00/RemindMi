@@ -1,14 +1,15 @@
 import 'package:get/get.dart';
-
-import 'splash_controller.dart';
-
+import 'package:remindmi/app/modules/terms_and_condition/terms_and_condition_controller.dart';
 
 
-class SplashBinding extends Bindings {
+
+
+
+class TermsAndConditionBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put<SplashController>(
-   SplashController(),
+    Get.put<TermsAndConditionController>(
+      TermsAndConditionController(),
     );
   }
 }

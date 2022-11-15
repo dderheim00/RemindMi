@@ -10,26 +10,19 @@ class DependentHomeTaskListController extends GetxController {
 
   @override
   void onInit() {
+    // All the incompleted task of depedent is loaded on oninit function by dependentHomeGetIncompleteTasks() Method
     tasks.bindStream(FireStoreDB().dependentHomeGetIncompleteTasks());
-    print(
-        ")))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))");
-    print(tasks.length);
+
     super.onInit();
   }
 
   @override
   void onReady() {
-    print(
-        ")))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))");
-    print(tasks.length);
     super.onReady();
   }
 
   @override
   void onClose() {
-    print(
-        ")))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))");
-    print(tasks.length);
     super.onClose();
   }
 }

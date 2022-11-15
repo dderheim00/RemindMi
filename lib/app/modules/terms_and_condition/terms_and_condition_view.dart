@@ -1,45 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:remindmi/app/components/terms&condition.dart';
+import 'package:remindmi/app/modules/terms_and_condition/terms_and_condition_controller.dart';
 
-import 'splash_controller.dart';
+class TermsAndConditionView extends GetView<TermsAndConditionController> {
+  const TermsAndConditionView({Key? key}) : super(key: key);
 
-class SplashView extends GetView<SplashController> {
-  const SplashView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Splash View'),
-      //   centerTitle: true,
-      // ),
-      resizeToAvoidBottomInset: false,
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(
-              height: 307,
+              height: 48,
             ),
-            Align(
-              child: Image.asset(
-                'assets/images/remindmi_icon.png',
-                height: 100,
-                width: 100,
-              ),
-            ),
-            Text(
-              'RemindMi',
-              style:
-                  GoogleFonts.dmSans(fontSize: 30, fontWeight: FontWeight.w700),
-            ),
-            SizedBox(
-              height: 246,
-            ),
-            Text(
-              'V.1.0',
-              style:
-                  GoogleFonts.dmSans(fontSize: 22, fontWeight: FontWeight.w500),
-            )
+            Container(
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: new IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(Icons.arrow_back))),
+            TermsAndCondtions()
           ],
         ),
         //

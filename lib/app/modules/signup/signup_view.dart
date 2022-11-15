@@ -1,119 +1,310 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:remindmi/app/components/terms&condition.dart';
 import 'package:remindmi/app/modules/signup/signup_controller.dart';
 import 'package:remindmi/app/routes/app_pages.dart';
-import 'package:remindmi/utils/my_preferences.dart';
 
-// import 'login_controller.dart';
+class SignupView extends StatefulWidget {
+  const SignupView({super.key});
 
-class SignupView extends GetView<SignupController> {
-  const SignupView({Key? key}) : super(key: key);
+  @override
+  State<SignupView> createState() => _SignupViewState();
+}
 
+class _SignupViewState extends State<SignupView> {
+  SignupController MySignupController = Get.put(SignupController());
 
-  // await Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
     TextEditingController _emailController = TextEditingController();
     TextEditingController _passwordController = TextEditingController();
+    TextEditingController _confirmPasswordController = TextEditingController();
+    TextEditingController _fullNameController = TextEditingController();
+
     return Scaffold(
-        body: FutureBuilder(
-          // future: _initializefirebase(),
-          builder: (context, snapshot) {
-            // if (snapshot.connectionState == ConnectionState.done) {
-              return Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Child Reminder ",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 28.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const Text(
-                        "Registration",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 44.0,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 44.0,
-                      ),
-                      TextField(
-                        controller: _emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
-                            hintText: "User Email",
-                            prefixIcon: Icon(Icons.mail, color: Colors.black)),
-                      ),
-                      const SizedBox(
-                        height: 26.0,
-                      ),
-                      TextField(
-                        controller: _passwordController,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                            hintText: "User Password",
-                            prefixIcon: Icon(Icons.lock, color: Colors.black)),
-                      ),
-                      Container(
-                          alignment: Alignment.centerRight,
-                          child: Text("Forgot Password?",
-                              style: TextStyle(color: Colors.blue)),
-                          margin: const EdgeInsets.symmetric(vertical: 10.0)),
-                      const SizedBox(
-                        height: 88.0,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        child: RawMaterialButton(
-                          fillColor: Color.fromARGB(255, 0, 0, 247),
-                          elevation: 0.0,
-                          padding: const EdgeInsets.symmetric(vertical: 20.0),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.0)),
-                          onPressed: () {
-                            controller.signUp(_emailController.text,_passwordController.text ,'parent');
+        body: SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 48,
+          ),
+          Container(
+              alignment: Alignment.topLeft,
+              margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+              child: new IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: Icon(Icons.arrow_back))),
+          SizedBox(
+            height: 16,
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.fromLTRB(16, 0, 0, 0),
+            child: Text(
+              'Create',
+              style: GoogleFonts.dmSans(
+                  fontSize: 36.0, fontWeight: FontWeight.w700),
+            ),
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.fromLTRB(16, 0, 0, 0),
+            child: Text(
+              'your account',
+              style: GoogleFonts.dmSans(
+                  fontSize: 36.0, fontWeight: FontWeight.w700),
+            ),
+          ),
+          SizedBox(
+            height: 36,
+          ),
+          Container(
+            decoration: BoxDecoration(
+                color: Color.fromRGBO(238, 239, 241, 1),
+                borderRadius: BorderRadius.circular(8)),
+            height: 60,
+            width: 398,
+            margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
+            child: TextField(
+              style:
+                  GoogleFonts.dmSans(fontSize: 20, fontWeight: FontWeight.w500),
+              keyboardType: TextInputType.emailAddress,
+              controller: _fullNameController,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "Full Name",
+                prefixIcon: Icon(
+                  Icons.person_outline_outlined,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 12,
+          ),
+          Container(
+            decoration: BoxDecoration(
+                color: Color.fromRGBO(238, 239, 241, 1),
+                borderRadius: BorderRadius.circular(8)),
+            height: 60,
+            width: 398,
+            margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
+            child: TextField(
+              style:
+                  GoogleFonts.dmSans(fontSize: 20, fontWeight: FontWeight.w500),
+              keyboardType: TextInputType.emailAddress,
+              controller: _emailController,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "Email ID",
+                prefixIcon: Icon(
+                  Icons.mail_outline,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 12,
+          ),
+          Container(
+            decoration: BoxDecoration(
+                color: Color.fromRGBO(238, 239, 241, 1),
+                borderRadius: BorderRadius.circular(8)),
+            height: 60,
+            width: 398,
+            margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
+            child: Obx(
+              () => TextField(
+                style: GoogleFonts.dmSans(
+                    fontSize: 20, fontWeight: FontWeight.w500),
+                controller: _passwordController,
+                obscureText: (MySignupController.passwordVisibility.value),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Password",
+                  prefixIcon: Icon(Icons.key_outlined),
+                  suffixIcon: InkWell(
+                    child: Icon(MySignupController.passwordVisibility.value
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined),
+                    onTap: () {
+                      MySignupController.passwordVisibility.value =
+                          !MySignupController.passwordVisibility.value;
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 12,
+          ),
+          Container(
+            decoration: BoxDecoration(
+                color: Color.fromRGBO(238, 239, 241, 1),
+                borderRadius: BorderRadius.circular(8)),
+            height: 60,
+            width: 398,
+            margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
+            child: Obx(
+              () => TextField(
+                style: GoogleFonts.dmSans(
+                    fontSize: 20, fontWeight: FontWeight.w500),
+                controller: _confirmPasswordController,
+                obscureText: (MySignupController.cPasswordVisibility.value),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Confirm Password",
+                  prefixIcon: Icon(Icons.key_outlined),
+                  suffixIcon: InkWell(
+                    child: Icon(MySignupController.cPasswordVisibility.value
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined),
+                    onTap: () {
+                      MySignupController.cPasswordVisibility.value =
+                          !MySignupController.cPasswordVisibility.value;
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 24,
+          ),
+          Obx(
+            () => Container(
+              alignment: Alignment.bottomLeft,
+              child: CheckboxListTile(
+                checkboxShape: CircleBorder(),
+                title: RichText(
+                  text: TextSpan(
+                    text: 'I agree to privacy ',
+                    style: GoogleFonts.dmSans(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: Color.fromARGB(255, 0, 0, 0)),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'policy & terms',
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            showModalBottomSheet<void>(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16.0),
+                              ),
+                              context: context,
+                              builder: (BuildContext context) {
+                                return SingleChildScrollView(
+                                    child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: new BorderRadius.only(
+                                          topLeft: const Radius.circular(25.0),
+                                          topRight:
+                                              const Radius.circular(25.0))),
+                                  child: Align(
+                                    child: Column(
+                                      children: <Widget>[TermsAndCondtions()],
+                                    ),
+                                  ),
+                                ));
+                              },
+                            );
                           },
-                          child: const Text(
-                            "Login",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18.0,
-                            ),
-                          ),
-                        ),
+                        style: GoogleFonts.dmSans(
+                            fontSize: 15,
+                            color: Color.fromRGBO(24, 90, 219, 1)),
                       ),
-                      Container(
-                          alignment: Alignment.center,
-                          child: GestureDetector(
-                            onTap: () {
-                              Get.offAllNamed(Routes.SIGNUP);
-                            },
-                            child: Text("Don't Have An Account? Create One",
-                                style: TextStyle(color: Colors.blue)),
-                          )),
                     ],
                   ),
                 ),
-              );
-            // }
-            // return const Center(
-            //   child: CircularProgressIndicator(),
-            // );
-          },
-        ));
-    // return MaterialApp(
-    //   home: Homepage(),
-    // );
+                controlAffinity: ListTileControlAffinity.leading,
+                value: MySignupController.termChecked.value,
+                onChanged: (term) {
+                  MySignupController.ToggleTermChecked();
+                },
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 31,
+          ),
+          Container(
+            margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            width: 398,
+            height: 60,
+            child: Obx(
+              () => RawMaterialButton(
+                fillColor: Color.fromRGBO(24, 90, 219, 1.0),
+                elevation: 0.0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
+                onPressed: () {
+                  MySignupController.signUp(
+                      _fullNameController.text,
+                      _emailController.text,
+                      _passwordController.text,
+                      _confirmPasswordController.text,
+                      'parent');
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (MySignupController.isLoading.value == true) ...[
+                      CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 1.5,
+                      )
+                    ],
+                    Container(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Sign up",
+                          style: GoogleFonts.dmSans(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 24,
+          ),
+          Container(
+            child: RichText(
+              text: TextSpan(
+                text: 'Already have an account? ',
+                style: GoogleFonts.dmSans(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromRGBO(157, 163, 173, 1)),
+                children: <TextSpan>[
+                  TextSpan(
+                      text: 'Sign In',
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Get.toNamed(Routes.LOGIN);
+                        },
+                      style: GoogleFonts.dmSans(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(24, 90, 219, 1))),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    ));
   }
 }

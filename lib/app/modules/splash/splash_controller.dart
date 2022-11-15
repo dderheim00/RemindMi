@@ -11,16 +11,17 @@ class SplashController extends GetxController {
     super.onInit();
   }
 
+//Here time for splash screen is fixed
   @override
   void onReady() {
     super.onReady();
     if (getStorge.read("id") != null) {
-      Future.delayed(const Duration(milliseconds: 9000), () {
-        Get.offAllNamed(Routes.HOME);
+      Future.delayed(const Duration(milliseconds: 2000), () {
+        Get.offAllNamed(Routes.BOTTOMNAVIGATIION);
       });
     } else {
-      Future.delayed(const Duration(milliseconds: 9000), () {
-        Get.offAllNamed(Routes.LOGIN);
+      Future.delayed(const Duration(milliseconds: 2000), () {
+        Get.offAllNamed(Routes.LANDINGPAGE);
       });
     }
   }

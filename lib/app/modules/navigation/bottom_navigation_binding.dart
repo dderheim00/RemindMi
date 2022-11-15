@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
-import 'package:remindmi/app/modules/navigation/bottom_navigation_page_controller.dart';
+import 'package:remindmi/app/modules/navigation/bottom_navigation_controller.dart';
 
 
 
-class NavigationPageBinding extends Bindings {
+
+class BottomNavigationBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<BottomNavigationController>(
