@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:remindmi/app/modules/accessibility/accessibility_binding.dart';
-import 'package:remindmi/app/modules/accessibility/accessibility_view.dart';
+import 'package:remindmi/app/modules/manage/managepages/accessibility/accessibility_binding.dart';
+import 'package:remindmi/app/modules/manage/managepages/accessibility/accessibility_view.dart';
 import 'package:remindmi/app/modules/addDependent/add_dependent_binding.dart';
 import 'package:remindmi/app/modules/addDependent/add_dependent_view.dart';
 import 'package:remindmi/app/modules/addtask/add_task_binding.dart';

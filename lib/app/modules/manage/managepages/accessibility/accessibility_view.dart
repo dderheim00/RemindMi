@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/cupertino.dart';
 
 class AccessibilityView extends StatefulWidget {
@@ -28,19 +26,33 @@ class _AccessibilityViewState extends State<AccessibilityView> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              accSwitch('Bold text', val1, onChangeFunctionBT),
-              accSwitch('Text-to-speech', val2, onChangeFunctionTTS)
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.grey,
+        ),
+        backgroundColor: Colors.white,
+        toolbarHeight: 100,
+        elevation: 0,
+        title: Text(
+          'Credits',
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
           ),
-        )
-    );
+        ),
 
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          accSwitch('Bold text', val1, onChangeFunctionBT),
+          accSwitch('Text-to-speech', val2, onChangeFunctionTTS)
+        ],
+      ),
+    );
 
   }
 

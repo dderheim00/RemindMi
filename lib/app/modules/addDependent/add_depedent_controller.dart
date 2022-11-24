@@ -79,7 +79,7 @@ class AddDependentController extends GetxController {
               if (e.code == 'email-already-in-use') {
                 isLoading.value = false;
 
-                showCustomSnackBar("User Already Registered", title: "Email");
+                showCustomSnackBar("User already registered", title: "Email");
               } else if (e.code == 'unknown') {
                 isLoading.value = false;
                 showCustomSnackBar("Please fill all the fields",
@@ -92,12 +92,12 @@ class AddDependentController extends GetxController {
           } else {
             isLoading.value = false;
             showCustomSnackBar(
-                "Password should contain Capital, small letter, Number & special character!",
+                "Password should contain a capital and lowercase letter, number and special character!",
                 title: "Error");
           }
         } else {
           isLoading.value = false;
-          showCustomSnackBar("Confirm Password didn't matched !",
+          showCustomSnackBar("'Confirm Password' didn't match!",
               title: "Error");
         }
       } else {
@@ -106,7 +106,7 @@ class AddDependentController extends GetxController {
       }
     } else {
       isLoading.value = false;
-      showCustomSnackBar("Please accept the terms and condition first! ",
+      showCustomSnackBar("Please accept the terms and condition first!",
           title: "Terms & Condition");
     }
   }
@@ -116,7 +116,7 @@ class AddDependentController extends GetxController {
     var user = _auth.currentUser;
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
     isLoading.value = false;
-    showCustomSnackBarSuccess("Account created successfully", title: "success");
+    showCustomSnackBarSuccess("Account created successfully", title: "Success");
 
     ref.doc(user!.uid).set({
       'parent': getStorge.read('id'),

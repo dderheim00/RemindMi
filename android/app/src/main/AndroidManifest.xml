@@ -2,7 +2,7 @@
     package="com.example.remindmi">
     <!--android:installLocation="preferExternal"-->
    <application
-        android:label="remindmi"
+        android:label="RemindMi"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

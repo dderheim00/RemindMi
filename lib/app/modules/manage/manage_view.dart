@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:remindmi/app/modules/accessibility/accessibility_view.dart';
+import 'package:remindmi/app/modules/manage/managepages/accessibility/accessibility_view.dart';
 import 'package:remindmi/app/modules/addDependent/add_dependent_view.dart';
 import 'package:remindmi/app/modules/all_task_list/all_task_list_view.dart';
 import 'package:remindmi/app/modules/manage/managepages/credits.dart';
@@ -74,7 +74,7 @@ class _ManageViewState extends State<ManageView> {
               SliverToBoxAdapter(
                 child: ManageCard(
                   icon: Icons.article,
-                  title: 'All Task',
+                  title: 'All Tasks',
                   onTap: () {
                     Navigator.push(
                       context,

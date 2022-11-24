@@ -7,13 +7,12 @@ import 'package:remindmi/app/components/task_list_card.dart';
 import 'package:remindmi/app/helper/utils.dart';
 import 'package:remindmi/app/modules/dependent_home_task/dependent_home_task_controller.dart';
 
-//______IT IS DEPENDENT'S HOME PAGE____________//
+//______DEPENDENT HOME PAGE____________//
 class DependentHomeTaskListViews extends StatelessWidget {
   DependentHomeTaskListViews({super.key});
   final getStorge = GetStorage();
 
-  final dependent_home_task_controller =
-      Get.put(DependentHomeTaskListController());
+  final dependent_home_task_controller = Get.put(DependentHomeTaskListController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +74,7 @@ class DependentHomeTaskListViews extends StatelessWidget {
                           ),
                         )),
                     TextSpan(
-                      text: 'Running Task',
+                      text: 'Running Tasks',
                       style: GoogleFonts.dmSans(
                         fontSize: 22,
                         fontWeight: FontWeight.w500,
@@ -92,7 +91,7 @@ class DependentHomeTaskListViews extends StatelessWidget {
                 itemCount: dependent_home_task_controller.tasks.length,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
-                    onLongPress: () {
+                    onLongPress: () { // If a task is long pressed, "complete task" option pops up
                       showModalBottomSheet(
                           backgroundColor: Colors.transparent,
                           isScrollControlled: true,

@@ -82,13 +82,13 @@ class AddTaskController extends GetxController {
                   });
                   isLoading.value = false;
                   showCustomSnackBarSuccess("Task added successfully",
-                      title: "success");
+                      title: "Success");
                   isSuccess.value = true;
                   reset();
                   Get.offAllNamed(Routes.BOTTOMNAVIGATIION);
                 } catch (e) {
                   isLoading.value = false;
-                  showCustomSnackBar('Unexpected error occured',
+                  showCustomSnackBar('Unexpected error occurred',
                       title: "Error");
                 }
               } else {

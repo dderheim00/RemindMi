@@ -30,7 +30,7 @@ class _CreditsPageState extends State<CreditsPage> {
       ),
       body: Container(
         margin: new EdgeInsets.symmetric(horizontal: 20.0, vertical: 150.0),
-        child: Text("Created by Nikhil Adhikari, Daniel Derheim, Bishnu Sharma, and John West.",
+        child: Text("Created by Nikhil Adhikari, Daniel Derheim, Bishnu Sharma and John West.",
           style: TextStyle(
             fontSize: 20.0,
             color: Colors.black,

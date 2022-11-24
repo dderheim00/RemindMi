@@ -80,7 +80,7 @@ class _HomeTaskListViewsState extends State<HomeTaskListViews> {
                           ),
                         )),
                     TextSpan(
-                      text: 'Running Task',
+                      text: 'Running Tasks',
                       style: GoogleFonts.dmSans(
                         fontSize: 22,
                         fontWeight: FontWeight.w500,

@@ -5,7 +5,7 @@ import 'package:remindmi/app/components/task_list_card.dart';
 import 'package:remindmi/app/components/task_view.dart';
 import 'package:remindmi/app/modules/all_task_list/all_task_list_controller.dart';
 
-//___________IT IS ALL TASK PAGE____________//
+//___________ALL TASKS PAGE____________//
 
 class AllTaskListView extends StatefulWidget {
   const AllTaskListView({super.key});
@@ -43,7 +43,7 @@ class _AllTaskListViewState extends State<AllTaskListView> {
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.fromLTRB(16, 0, 0, 0),
                 child: Text(
-                  'All Task',
+                  'All Tasks',
                   style: GoogleFonts.dmSans(
                       fontSize: 36.0, fontWeight: FontWeight.w700),
                 ),

@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:remindmi/app/models/home_task_list_model.dart';
-
 import 'package:remindmi/app/services/firestore_db.dart';
 
 class DependentHomeTaskListController extends GetxController {
@@ -10,7 +9,7 @@ class DependentHomeTaskListController extends GetxController {
 
   @override
   void onInit() {
-    // All the incompleted task of depedent is loaded on oninit function by dependentHomeGetIncompleteTasks() Method
+    // All the uncompleted task of dependent is loaded on onInit() function by dependentHomeGetIncompleteTasks() method
     tasks.bindStream(FireStoreDB().dependentHomeGetIncompleteTasks());
 
     super.onInit();

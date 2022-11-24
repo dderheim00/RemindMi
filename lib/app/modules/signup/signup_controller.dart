@@ -113,7 +113,7 @@ class SignupController extends GetxController {
     var user = _auth.currentUser;
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
     isLoading.value = false;
-    showCustomSnackBarSuccess("Account created successfully", title: "success");
+    showCustomSnackBarSuccess("Account created successfully", title: "Success");
 
     ref.doc(user!.uid).set(
         {'parent': '', 'fullName': fullName, 'email': email, 'role': role});

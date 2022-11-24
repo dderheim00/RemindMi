@@ -29,11 +29,11 @@ class ForgotPasswordController extends GetxController {
     try {
       await _auth.sendPasswordResetEmail(email: email.trim());
       isLoading.value = false;
-      showCustomSnackBarSuccess("Password reset link is sent to email !",
-          title: "success");
+      showCustomSnackBarSuccess("A reset link has been sent to email",
+          title: "Success");
     } on FirebaseAuthException catch (e) {
       isLoading.value = false;
-      showCustomSnackBar("Something went wrong !", title: "Error");
+      showCustomSnackBar("Something went wrong!", title: "Error");
     }
   }
 }

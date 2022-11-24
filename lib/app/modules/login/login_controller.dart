@@ -73,16 +73,16 @@ class LoginController extends GetxController {
       isLoading.value = false;
       route(); // Route is called here . in route the page is directed to bottom navigation home aka home page ...
       //and data of user is saved in get storage
-      showCustomSnackBarSuccess("login successfull", title: "success");
+      showCustomSnackBarSuccess("Login successful", title: "Success");
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
-        emailError.value = "User not found !";
+        emailError.value = "User not found!";
         showCustomSnackBar("User not found", title: "Email");
         isEmailError.value = true;
       } else if (e.code == "invalid-email") {
         isEmailError.value = true;
-        showCustomSnackBar("Format error", title: "Email");
-        emailError.value = 'format error !';
+        showCustomSnackBar("Formatting error", title: "Email");
+        emailError.value = 'format error!';
       } else if (e.code == 'wrong-password') {
         isPasswordError.value = true;
         showCustomSnackBar("Incorrect Password", title: "Password");
